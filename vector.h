@@ -38,14 +38,14 @@
 
 
 #define _VECTOR_SAFE_INDEX(name, index) ( \
-        index > _VECTOR_TAIL(name) \
-        ? index % _VECTOR_TAIL(name) \
-        : ( \
-            index < 0 \
-            ? _VECTOR_TAIL(name) - (-1 * index % _VECTOR_TAIL(name)) \
-            : index \
-        ) \
-    )
+    index > _VECTOR_TAIL(name) \
+    ? index % _VECTOR_TAIL(name) \
+    : ( \
+        index < 0 \
+        ? _VECTOR_TAIL(name) - (-1 * index % _VECTOR_TAIL(name)) \
+        : index \
+    ) \
+)
 
 #define VECTOR_AT(name, index) \
     _VECTOR_DATAP(name)[_VECTOR_SAFE_INDEX(name, index)]
