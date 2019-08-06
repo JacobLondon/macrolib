@@ -85,7 +85,7 @@
  * @brief internal, ensure the index is within bounds, else mod the index to be in bounds
  */
 #define _VECTOR_SAFE_INDEX(name, index) ( \
-    (_VECTOR_TAIL(cool) + index) % _VECTOR_TAIL(cool) \
+    (_VECTOR_TAIL(name) + index) % _VECTOR_TAIL(name) \
 )
 
 /**
