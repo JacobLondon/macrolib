@@ -5,10 +5,12 @@
 void main()
 {
     VECTOR_CONSTRUCT(cool, int);
-    VECTOR_APPEND(cool, 1);
-    VECTOR_APPEND(cool, 2);
-    VECTOR_APPEND(cool, 3);
+    for (int i = 0; i < 100; i++)
+        VECTOR_APPEND(cool, i);
 
-    printf("%d\n", VECTOR_AT(cool, -1));
+    VECTOR_COPY(cooler, cool);
 
+    for (int i = 0; i < VECTOR_LEN(cooler); i++)
+        printf(" %d", VECTOR_AT(cooler, i));
+    printf("\n");
 }
