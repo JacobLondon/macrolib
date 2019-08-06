@@ -28,6 +28,12 @@
     _VECTOR_TYPE(name) *_VECTOR_DATAP(name) = (_VECTOR_TYPE(name) *)malloc(sizeof(_VECTOR_TYPE(name)) * VECTOR_CAPACITY(name))
 
 /**
+ * @brief deconstruct/delete the allocated memory
+ */
+#define VECTOR_DECONSTRUCT(name) \
+    free(_VECTOR_DATAP(name))
+
+/**
  * @brief copy constructor
  */
 #define VECTOR_COPY(new_name, old_name) \
@@ -38,6 +44,17 @@
     for (unsigned long _VECTOR_TEMP(new_name) = 0; _VECTOR_TEMP(new_name) < _VECTOR_TAIL(new_name); _VECTOR_TEMP(new_name)++) { \
         _VECTOR_DATAP(new_name)[_VECTOR_TEMP(new_name)] = _VECTOR_DATAP(old_name)[_VECTOR_TEMP(new_name)]; \
     }
+
+/**
+ * @brief SET the vector capacity and FILL it with a value
+ */
+#define VECTOR_SFILL(name, capacity, value) { \
+    VECTOR_RESERVE(name, capacity); \
+    for (_VECTOR_TYPE(name) _VECTOR_TEMP(name) = 0; _VECTOR_TEMP(name) < VECTOR_CAPACITY(name); _VECTOR_TEMP(name)++) \
+        _VECTOR_DATAP(name)[_VECTOR_TEMP(name)] = (value); \
+    VECTOR_CAPACITY(name) = (capacity); \
+    _VECTOR_TAIL(name) = (capacity); \
+}
 
 /**
  * @brief allocate capacity amount of spaces in the vector
@@ -92,13 +109,5 @@
  */
 #define VECTOR_LEN(name) _VECTOR_TAIL(name)
 
-/**
- * @brief set the vector size and fill it with a value
- */
-#define VECTOR_SFILL(name, capacity, value) { \
-    VECTOR_RESERVE(name, capacity); \
-    for (_VECTOR_TYPE(name) _VECTOR_TEMP(name) = 0; _VECTOR_TEMP(name) < VECTOR_CAPACITY(name); _VECTOR_TEMP(name)++) \
-        _VECTOR_DATAP(name)[_VECTOR_TEMP(name)] = (value); \
-}
 
 #endif // VECTOR_H
